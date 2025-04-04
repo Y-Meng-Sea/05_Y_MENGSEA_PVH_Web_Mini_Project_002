@@ -1,7 +1,23 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 const WorkspaceForm = (props) => {
+     const colors = [
+          "bg-red-500",
+          "bg-blue-500",
+          "bg-green-500",
+          "bg-yellow-500",
+          "bg-pink-500",
+          "bg-purple-500",
+          "bg-orange-500",
+     ];
+     const [randomColor, setRandomColor] = useState("bg-gray-500"); // Default color
+
+     useEffect(() => {
+          // This only runs on the client side
+          setRandomColor(colors[Math.floor(Math.random() * colors.length)]);
+     }, []);
+
      return (
           <>
                <li>
@@ -9,7 +25,7 @@ const WorkspaceForm = (props) => {
                          href={`/workspace/${props.id}`}
                          className="group flex items-center justify-between rounded-lg px-4 py-2 text-black hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-gray-200">
                          <div className="flex items-center gap-2">
-                              <span className="w-2.5 h-2.5 rounded-full bg-amber-600"></span>
+                              <span className={`w-2.5 h-2.5 rounded-full ${randomColor}`}></span>
                               <span className="text-xl"> {props.title}</span>
                          </div>
                          <span className="shrink-0 text-black">

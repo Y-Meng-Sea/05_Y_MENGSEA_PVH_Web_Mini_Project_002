@@ -1,9 +1,10 @@
+import { log } from "console";
 import { auth } from "../../auth";
+import { redirect } from "next/navigation";
 
 export async function addWorkSpaceService({ newWorkspace }) {
      const session = await auth();
      if (!session) {
-          console.log("No session found");
           return { success: false, error: "No session found" };
      }
      const res = await fetch(`http://96.9.81.187:8080/api/v1/workspace`, {
@@ -17,5 +18,7 @@ export async function addWorkSpaceService({ newWorkspace }) {
                workspaceName: newWorkspace,
           }),
      });
-     const data = await res.json();
+     const response = await res.json();
+     log("response id  : ", response.payload.workspaceId);
+     redirect("/workspace");
 }
