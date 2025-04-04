@@ -3,7 +3,7 @@ import { Clock, Ellipsis } from "lucide-react";
 import React from "react";
 
 export default function CardComponent({ props }) {
-     console.log("props", props);
+     // console.log("props", props);
      const handleStatusColor = (status) => {
           if (status == "NOT_STARTED") {
                return "bg-watermelon-red";

@@ -1,13 +1,13 @@
+"use server";
 import CardComponent from "@/components/card";
 import { todoService } from "@/service/todoService";
 
 const WorkSpace = async ({ params }) => {
-     const id = await params.workspace;
-     console.log("id is : ", id);
+     const id = params.workspace;
      const res = await todoService(id);
      const renderCard = (res) => {
           if (!res || res.length === 0) {
-               return <div>There are no task available in the workspace</div>;
+               return <p>There are no task available in the workspace</p>;
           } else {
                return res.map((d) => <CardComponent key={d.taskId} props={d} />);
           }

@@ -3,7 +3,6 @@ import { todoService } from "@/service/todoService";
 
 const WorkSpace = async ({ params }) => {
      const id = params.workspace;
-     console.log("id is : ", id);
      const res = await todoService(id);
      const renderCard = (res) => {
           if (res === undefined || res === null) {

@@ -3,6 +3,19 @@ import Logo from "@/components/logo";
 import profileimage from "@/assets/profile.png";
 import Image from "next/image";
 import WorkspaceRender from "./_components/workspace-render";
+import { Button } from "@/components/ui/button";
+import { SquarePlus } from "lucide-react";
+import { addWorkSpaceAction } from "@/action/addWorkSpaceAction";
+import {
+     Dialog,
+     DialogContent,
+     DialogDescription,
+     DialogFooter,
+     DialogHeader,
+     DialogTitle,
+     DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
 export const metadata = {
      title: {
           template: "%s | Monster",
@@ -23,43 +36,37 @@ export default function WorkSpace({ children }) {
                               <div className="w-[90%] mx-auto">
                                    <div className="text-2xl text-gray-500 flex justify-between gap-2 my-4">
                                         <h1>Workspace</h1>
-                                        <button>
-                                             <svg
-                                                  width="25"
-                                                  height="24"
-                                                  viewBox="0 0 25 24"
-                                                  fill="none"
-                                                  xmlns="http://www.w3.org/2000/svg">
-                                                  <path
-                                                       d="M15.53 12H16.54"
-                                                       stroke="#94A3B8"
-                                                       strokeWidth="2"
-                                                       strokeLinecap="round"
-                                                       strokeLinejoin="round"
-                                                  />
-                                                  <path
-                                                       d="M8.54004 12H12.35"
-                                                       stroke="#94A3B8"
-                                                       strokeWidth="2"
-                                                       strokeLinecap="round"
-                                                       strokeLinejoin="round"
-                                                  />
-                                                  <path
-                                                       d="M12.54 16V8"
-                                                       stroke="#94A3B8"
-                                                       strokeWidth="2"
-                                                       strokeLinecap="round"
-                                                       strokeLinejoin="round"
-                                                  />
-                                                  <path
-                                                       d="M2.54004 13.04V15C2.54004 20 4.54004 22 9.54004 22H15.54C20.54 22 22.54 20 22.54 15V9C22.54 4 20.54 2 15.54 2H9.54004C4.54004 2 2.54004 4 2.54004 9"
-                                                       stroke="#94A3B8"
-                                                       strokeWidth="2"
-                                                       strokeLinecap="round"
-                                                       strokeLinejoin="round"
-                                                  />
-                                             </svg>
-                                        </button>
+
+                                        <Dialog>
+                                             <DialogTrigger asChild>
+                                                  <Button variant="ghost" size="icon" className="hover:bg-gray-100">
+                                                       <SquarePlus size={26} />
+                                                  </Button>
+                                             </DialogTrigger>
+                                             <DialogContent className="sm:max-w-[425px] bg-white">
+                                                  <DialogHeader>
+                                                       <DialogTitle>Create New Workspace</DialogTitle>
+                                                  </DialogHeader>
+                                                  <form action={addWorkSpaceAction} className="grid gap-4 py-4">
+                                                       <div className="space-y-2">
+                                                            <Input
+                                                                 id="newWorkspace"
+                                                                 name="newWorkspace"
+                                                                 placeholder="Type your workspace name"
+                                                                 className="w-full"
+                                                            />
+                                                       </div>
+
+                                                       <DialogFooter>
+                                                            <Button
+                                                                 type="submit"
+                                                                 className={`text-blue-400 px-7 py-3 border rounded-xl`}>
+                                                                 Create
+                                                            </Button>
+                                                       </DialogFooter>
+                                                  </form>
+                                             </DialogContent>
+                                        </Dialog>
                                    </div>
                                    {/* render workspace list */}
                                    <WorkspaceRender />
